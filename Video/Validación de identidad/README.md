@@ -19,13 +19,10 @@ Con la intención de determinar cuando una persona podría estar mintiendo se an
     1. [Pre-procesamiento de imagen](#Pre-procesamiento-de-imagen)
     2. [Construcción del conjunto de datos](#Construcción-del-conjunto-de-datos) 
     3. [Modelo de validación de identidad con imagenes](#Modelo-de-validación-de-identidad-con-imagenes)
-2. [Datos de Audio](#Datos-de-Audio)
-    1. [Preprocesamiento del audio (Audio a espectograma)](#Preprocesamiento-del-audio-(Audio-a-espectograma))
-    2. [Construcción del conjunto de datos](#Construcción-del-conjunto-de-datos)
-    3. [Modelo estrés de voz](#Modelo-estrés-de-voz)
+
 
 # Procesamiento y modelamiento de datos
-## Datos de video
+
 ###  Pre-procesamiento de imagen
 El proyecto tendrá como objetivo la identificacion de rostro. 
 Para esto se usará una red pre-entrenada ([dlib face recognition](http://dlib.net/)) que es capaz de reconocer el area del rostro posando de manera frontal.
@@ -90,81 +87,4 @@ Una vez se obtienen las incrustaciones de la imagen captuarada por la cámara de
 La evaluación del desempeño del algorítmo se realiza con base en la matriz de confusión. En este caso se obtuvo una presición de 1.
 
 ![confusion_video](imagenes/confusion_video.PNG)
-
-## Datos de Audio
-
-Los datos de audio serán extraidos del video que se proporcione inicialmente.
-
-![audiop](imagenes/audio_p.PNG)
-
-### Preprocesamiento del audio (Audio a espectograma)
-
-Los audios se trabajarán en forma de espectogramas para posteriormente ingresar a un modelo entrenado basado en convoluciones, por esta razón se extrae el audio desde el el video grabado por el dispositivo a disposición del usuario, se guarda como un archivo .wav y con ayuda de la librería *librosa* se convierte en un spectograma en formato \*.jpg que luego será leido cómo un tensor y servirá como input del modelo de clasificación de estrés de voz.
-
-![proceso_audio](imagenes/proceso_audio.PNG)
-
-### Construcción del conjunto de datos
-
-Con el objetivo de identificar el estres en la voz,se toman como ejemplo datos de audio de la base [RAVDESS](https://zenodo.org/record/1188976#.XsyEAmhKhPY). La cual tiene dos tipos de archivos:
-
-Audio: Habla y canto 
-
-Video: Habla y canto Cada uno de estos tiene varios identificadores, los cuales son los siguientes:
-
-* Modalidad (01 = full-AV, 02 = video-only, 03 = audio-only).
-
-* Canal de audio (01 = speech, 02 = song).
-
-* Emoción (01 = neutral, 02 = calm, 03 = happy, 04 = sad, 05 = angry, 06 = fearful, 07 = disgust, 08 = surprised).
-
-* Intensidad Emocional (01 = normal, 02 = strong).
-
-* Declaración (01 = "Kids are talking by the door", 02 = "Dogs are sitting by the door").
-
-* Repetición (01 = 1st repetition, 02 = 2nd repetition).
-
-* Actor (01 to 24. Odd numbered actors are male, even numbered actors are female).
-
-![Ravdess](imagenes/ravdess.PNG)
-
-Se extraerán solo los archivos de audio, es decir "*.wav", de estos solo tomaremos los datos de tipo "habla" y para simular el estres de voz tomaremos como ejemplo las emociones "Calmado" que representará una voz no estresada y la emoción "asustado" que representará la voz estresada.
-
-**Modalidad**:
-* 03= Audio
-
-**Canal**
-* 01= Habla
-
-**Emoción**:
-
-*  02=Calmado (Tomará el valor 0: no estres en la voz)
-*  06=Asustado (Tomará el valor 1: estres en la voz)
-
-
-Con esto se obtiene un total de 384 audios donde 192 pertenecen a la categoria de voz no estresada y 192 a la categoria de voz estresada.
-
-![cantidad_audio](imagenes/cantidad_audio.PNG)
-
-### Modelo estrés de voz
-
-Una vez pre-procesados los datos de audio se entrena una red neuronal con modelos pre-entrenados que busca clasificar el input de audio en las categorías de "calma" y "estrés".
-
-#### Detalles del entrenamiento
-
-Se proponen tres diferentes modelos pre entrenados a usar: InceptionV3, MobileNet y VGG19; y se completa la arquitectura de la red:
-
-* Añadiendo 4 capas convolucionales con tamaño de kernel (3, 3) con un número creciente de filtros (16, 32, 32, 64)
-* Se añade Maxpooling2D  despues de cada 2 capas convolucionales.
-* Activación de LeakyReLU despues de cada convolución.
-* Una capa de BatchNormalization luego de la segunda convolución.
-*  Dropout después de cada pooling.
-
-Cómo modelo final se tomó la red entrenada con el modelo [MobileNet](https://github.com/keras-team/keras-applications/blob/master/keras_applications/mobilenet.py) como base.
-
-La evaluación del modelo se realizará estudiando la matriz de confusión de las predicciones sobre el conjunto de prueba.
-
-![confusion_video](imagenes/confusion_audio.PNG)
-
-
-
 
