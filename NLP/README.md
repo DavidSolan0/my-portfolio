@@ -22,4 +22,4 @@ El preprocesamiento incluye desde la tokenización hasta la lemmatización de lo
 
 #### K-Means
 
-**NOTA:** Los resumentes presentados corresponden al análisis de unigramas. Sin embargo, todos los métodos presentados basados en incrustación tiene extensión directa al estudio de n-gramas
+**NOTA:** Los resumenes corresponden al análisis de unigramas. Sin embargo, todos los métodos presentados basados en incrustación tiene extensión directa al estudio de n-gramas
