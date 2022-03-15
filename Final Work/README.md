@@ -1,3 +1,3 @@
-# Bachelor's Final Work
+# Bachelor's Degree Final Work
 
-# Magister Final Work 
+# Magister's Degree Final Work 
