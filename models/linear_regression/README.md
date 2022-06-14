@@ -1,9 +1,11 @@
-# Modelos de Regresión Lineal
+# About 
 
-En esta sección de incluyen detalles computacionales de la capacidad y potencial de los modelos lineales clásicos para la solución de problemas de la vida real.
-La programación incluye códigos tanto en Python como en R, ambos presentados en cuadernos de Jupyter. 
+This section includes computational details of the capability and potential of classical linear models for solving real-life problems.
+The programming includes codes in both Python and R, both presented in Jupyter notebooks. 
 
-Cada cuaderno está debidamente documentado con la forma en que los resultados deben ser interpretados, **las transformaciones BoxCox** y **validación de supuestos** no se presentan. Sin embargo, la programación original contiene paso a paso los detalles que llevaron al modelo final, su arquitectura y su validación (esto se omite dado que en la práctica esto no corresponde a los resultados a presentar), si nace algún interés en aprender y conocer estos detalles teóricos se puede poner en contacto con nosotros y con gusto los compartiremos. Lo anterior se menciona con el fin de brindar la tranquilidad de que los procedimientos realizados tienen un respaldo teórico fuerte. 
+Each notebook is properly documented with how the results should be interpreted, **BoxCox transformations** and **validation of assumptions** are not presented. However, the original programming contains step-by-step details that led to the final model, its architecture, and validation (this is omitted since in practice this does not correspond to the results to be presented), if there is any interest in learning and knowing these theoretical details you can contact us and we will gladly share them. The above is mentioned in order to provide peace of mind that the procedures performed have strong theoretical support.
+
+Translated with www.DeepL.com/Translator (free version)
 
 
 
