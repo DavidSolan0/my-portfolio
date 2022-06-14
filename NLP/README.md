@@ -1,6 +1,6 @@
 ## Text Mining and Text Analytics 
 
-This folder contains everything about our capabilities and future research about NLP. Here we explain the expected outputs to obtain with use cases to understand the code we provide.
+This folder contains everything about my capabilities and future research about NLP. HereI explain the expected outputs to obtain with use cases to understand the code we provide.
 
 Each notebook here contains three parameters:
 
@@ -13,7 +13,6 @@ Each notebook here contains three parameters:
 Sentence similarity use embeddings to map a sentence (n-gram or unigram) into an n-dimensional space. Once the mapping is done we could apply non-supervised 
 methodologies to do clustering. You coul take a look for our options [here]() for unigrams and [here]() for n-grams. We implement [spacy model](https://spacy.io/models/es)
 and [roberta transformer](https://huggingface.co/symanto/sn-xlm-roberta-base-snli-mnli-anli-xnli). If you are interested in test anothe option you should go [here](https://huggingface.co/models?language=es&pipeline_tag=sentence-similarity&sort=downloads)
-
 
 * Unigram analysis 
 
